@@ -1,0 +1,34 @@
+body {
+    background-color: #111;
+    color: #EEE;
+    font-family: 'Roboto Slab', serif;
+}
+  
+.series-frame {
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border: 2px solid #EEE;
+    margin: 30px;
+    padding: 10px;
+}
+.my-form {
+  padding: 20px;
+}
+.series-frame h2 {
+  margin-right: 20px;
+}
+#refresh {
+  float: right;
+  margin-right: 20px;
+  font-size: 1.2em;
+  font-weight: 200;
+  padding: 10px;
+}
+
+#refresh:hover {
+  background-color: #000090;
+  cursor: pointer;
+}

@@ -8,17 +8,14 @@ function fetchTodosNonCompleted() {
       const todoList = document.getElementById('todo-list');
       data.forEach((todo) => {
         if (todo.completed == false) {
-          const listItem = document.createElement('li');
-          listItem.classList.add('list-group-item');
-          listItem.id = todo.id;
           listTodoNonComplet.push(todo);
-          listItem.innerHTML = `
-          Todo: <span class="fw-bold">${todo.title}</span> - Completed: <span class="fw-bold">${todo.completed}</span>
-          <div class="btn-group float-right">
-            <button type="button" class="btn btn-success" onclick="completeTodo(${todo.id})">True</button>
-          </div>
-          `;
-          todoList.appendChild(listItem);
+          const list = document.querySelector('#todo-list');
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${todo.title}</td> <td>${todo.completed}</td> 
+            <td><button type="button" class="btn btn-success sup" onclick="completeTodo(${todo.id})">Completer</button></td>               
+             `;
+          list.appendChild(tr);
         }
       });
     })
@@ -31,8 +28,7 @@ function fetchTodosNonCompleted() {
 }
 // Fonction pour récupérer les données de l'API complétés
 function completeTodo(todoId) {
-  const todoList = document.getElementById('todoId');
-  console.log(todoList);
+  // const todoList = document.getElementById('todoId');
   const cleRecherche = 'id';
   const valeurRecherche = todoId;
   const objetTrouve = listTodoNonComplet.find(
@@ -44,19 +40,21 @@ function completeTodo(todoId) {
     const todoCompleted = document.getElementById('todoCompleted');
     let chiffre = document.querySelector('.chiffre');
     if (objetTrouve.completed == true) {
-      const list = document.createElement('li');
-      list.classList.add('list-group-item');
-      list.id = objetTrouve.id;
-      list.innerHTML = `
-      Todo: <span class="fw-bold">${objetTrouve.title}</span> - Completed: <span class="fw-bold">${objetTrouve.completed}</span>
-      <div class="btn-group float-right">
-        <button type="button" onclick="details(${objetTrouve.id})" class="btn btn-primary">Détails</button>
-        <button type="button" onclick="falser(${objetTrouve.id})" class="btn btn-danger">False</button>
-      </div>
-      `;
-      todoCompleted.appendChild(list);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+            <td>${objetTrouve.title}</td> <td>${objetTrouve.completed}</td> 
+            <td><button type="button" class="btn btn-danger sup" onclick="falser(${objetTrouve.id})">retourner</button></td>              
+            <td><button type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" class="btn btn-primary det" onclick="details(${objetTrouve.id})">Détails</button></td>              
+            `;
+      todoCompleted.appendChild(tr);
     }
     chiffre.textContent = listTodoComplet.length;
+    document.querySelector('#todo-list').addEventListener('click', (e) => {
+      target = e.target;
+      if (target.classList.contains('sup')) {
+        target.parentElement.parentElement.remove();
+      }
+    });
     // console.log({ listTodoComplet });
   } else {
     console.log('Aucun objet trouvé avec la clé de valeur recherchée.');
@@ -71,7 +69,20 @@ function details(todoId) {
   );
   objetTrouve.completed = true;
   if (objetTrouve) {
-    console.log(objetTrouve);
+    let modal = document.querySelector('#exampleModal');
+    let offcanvas = document.querySelector('.offcanvas');
+    const div = document.querySelector('.offcanvas-body');
+    const ul = document.createElement('ul');
+    ul.classList.add('list-group');
+    ul.innerHTML = `
+    <li class="list-group-item"><span class="fw-semibold">User Id: </span>${objetTrouve.userId}</li>
+    <li class="list-group-item"><span class="fw-semibold">Id: </span>${objetTrouve.id}</li>
+    <li class="list-group-item"><span class="fw-semibold">Title: </span>${objetTrouve.title}</li>
+    <li class="list-group-item"><span class="fw-semibold">Completed: </span>${objetTrouve.completed}</li>
+    `;
+    div.appendChild(ul);
+    // modal.classList.add('z-0');
+    // offcanvas.classList.add('z-1');
   } else {
     console.log('Aucun objet trouvé avec la clé de valeur recherchée.');
   }

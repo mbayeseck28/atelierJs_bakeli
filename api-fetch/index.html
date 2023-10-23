@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>API</title>
 </head>
-<body class="bg-dark p-3">
+<body class="bg-dark text-white p-3">
     <div class="container px-5">
          <h6 class="chiffre text-white bg-danger ">0</h6>
         <!-- Button trigger modal -->
@@ -16,30 +16,55 @@
             <i class="fa-solid fa-bell text-white"></i>
         </button>
         <h1 class="mt-4 mb-4 text-center rounded-2 pb-2 bg-primary">Liste des tâches non complétées</h1>
-        <ul id="todo-list" class="list-group mt-4">
-            <!-- Les données seront affichées ici -->
-        </ul>
+        <!-- <ul id="todo-list" class="list-group mt-4">
+
+        </ul> -->
+        <table class="w-100">
+            <thead>
+                <tr class="border border-start-0 border-top-0 border-end-0 border-2 border-opacity-25">
+                    <td class="fw-bold text-center">Todo</td>
+                    <td class="fw-bold text-center">Completed</td>
+                </tr>
+            </thead>
+            <tbody id="todo-list">
+            </tbody>
+        </table>
     </div>
 
     <!-- ___________________________________ -->
   <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Listes des taches terminés</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content text-dark">
+            <div class="modal-header bg-primary">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Listes des taches terminés</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h4 class="mt-4 mb-4 text-center rounded-2 pb-2 bg-primary text-white">Liste des tâches Complétées</h4>
-                <ul id="todoCompleted" class="list-group mt-4">
-                    <!-- Les données seront affichées ici -->
-                </ul>
+                <table class="w-100">
+                    <thead>
+                        <tr class="border border-start-0 border-top-0 border-end-0 border-2 border-opacity-25">
+                            <td class="fw-bold text-center">Todo</td>
+                            <td class="fw-bold text-center">Completed</td>
+                        </tr>
+                    </thead>
+                    <tbody id="todoCompleted">
+                    </tbody>
+                </table>
             </div>
         </div>
         </div>
     </div>
     <!-- _________________________________ -->
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-start bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header bg-primary">
+          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Détails de la tache</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body text-danger">
+        </div>
+      </div>
 
 
     <script src="app.js"></script>

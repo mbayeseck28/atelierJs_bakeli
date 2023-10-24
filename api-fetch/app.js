@@ -1,6 +1,7 @@
 // Variables globaux
 let listTodoNonComplet = [];
 let listTodoComplet = [];
+let chiffre = document.querySelector('.chiffre');
 
 // Fonction pour récupérer les données de l'API non complétés
 function fetchTodosNonCompleted() {
@@ -33,7 +34,6 @@ function fetchTodosNonCompleted() {
 // Fonction pour passer le completed de false à true
 function completeTodo(todoId) {
   // const todoList = document.getElementById('todoId');
-  let chiffre = document.querySelector('.chiffre');
   const cleRecherche = 'id';
   const valeurRecherche = todoId;
   const objetTrouve = listTodoNonComplet.find(
@@ -94,6 +94,7 @@ btnBack.addEventListener('click', (e) => {
   // let btnBack = document.getElementById('btnBack');
   // btnBack.classList.add('d-none');
   fetchTodosNonCompleted();
+  chiffre.textContent = listTodoComplet.length;
 });
 
 // Afficher les détails d'une tache
@@ -118,6 +119,30 @@ function details(todoId) {
     div.appendChild(ul);
     // modal.classList.add('z-0');
     // offcanvas.classList.add('z-1');
+  } else {
+    console.log('Aucun objet trouvé avec la clé de valeur recherchée.');
+  }
+}
+
+// Fonctions pour retouner un todo en no complted
+function nonComplet(todoId) {
+  const cleRecherche = 'id';
+  const valeurRecherche = todoId;
+  const objetTrouve = listTodoNonComplet.find(
+    (objet) => objet[cleRecherche] === valeurRecherche
+  );
+  objetTrouve.completed = false;
+  if (objetTrouve) {
+    listTodoNonComplet.push(objetTrouve);
+    listTodoComplet.remove(objetTrouve);
+    chiffre.textContent = listTodoComplet.length;
+    document.querySelector('#todo-list').addEventListener('click', (e) => {
+      target = e.target;
+      if (target.classList.contains('sup')) {
+        target.parentElement.parentElement.remove();
+      }
+    });
+    // console.log({ listTodoComplet });
   } else {
     console.log('Aucun objet trouvé avec la clé de valeur recherchée.');
   }

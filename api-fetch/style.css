@@ -1,17 +1,9 @@
 .chiffre{
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 400;
 }
-.boutonNot{
-    /* margin-bottom: -30px; */
-}
-
-/* .list-group-item{
-    display: flex;
-    justify-content: space-between;
-} */
